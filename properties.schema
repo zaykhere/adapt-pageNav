@@ -1,0 +1,732 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "http://jsonschema.net",
+  "$ref": "http://localhost/plugins/content/component/model.schema",
+  "properties": {
+    "_supportedLayout": {
+      "type": "string",
+      "default": "full-width",
+      "title": "Diseño compatible",
+      "enum": [
+        "full-width",
+        "half-width",
+        "both"
+      ],
+      "editorOnly": true
+    },
+    "instruction": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "title": "Instrucción",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Este es el texto de instrucciones.",
+      "translatable": true
+    },
+    "_loopStyle": {
+      "type": "string",
+      "required": true,
+      "title": "Es continuo",
+      "enum": ["allPages", "siblings", "none"],
+      "inputType": {
+        "type": "Select",
+        "options": ["allPages", "siblings", "none"]
+      },
+      "default": "none",
+      "help": "allPages = recorrer secuencialmente todas las páginas en curso, siblings = recorrer secuencialmente todas las páginas en el objeto principal actual, none = deshabilite los botones anterior y siguiente al principio y al final de las páginas en el objeto principal actual",
+      "validators": []
+    },
+    "_shouldSkipOptionalPages": {
+      "type": "boolean",
+      "default": false,
+      "title": "Saltar páginas opcionales",
+      "inputType": "Checkbox"
+    },
+    "_buttons": {
+      "type": "object",
+      "required": true,
+      "title": "Configuración de botones",
+      "properties": {
+        "_returnToPreviousLocation": {
+          "type": "object",
+          "required": true,
+          "legend": "Botón para volver a la ubicación anterior",
+          "properties": {
+            "_isEnabled": {
+              "type": "boolean",
+              "required": true,
+              "title": "Monitora",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "_lockUntilPageComplete": {
+              "type": "boolean",
+              "required": true,
+              "title": "Bloquear hasta completar la página",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": [],
+              "help": "Para usar cuando el sistema de bloqueo Adapt estándar no se aplica, como en una página de inicio antes del menú principal"
+            },
+            "_order": {
+              "type": "number",
+              "required": true,
+              "default": 0,
+              "title": "Ordenar",
+              "inputType": "Number",
+              "validators": ["required", "number"],
+              "help": "Orden de visualización de los botones"
+            },
+            "_classes": {
+              "type": "string",
+              "required": false,
+              "title": "Clases",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_iconClass": {
+              "type": "string",
+              "required": false,
+              "title": "Clase de icono",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_alignIconRight": {
+              "type": "boolean",
+              "required": true,
+              "title": "Alinear icono a la derecha",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "text": {
+              "type": "string",
+              "required": true,
+              "default": "Devolver",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "ariaLabel": {
+              "type": "string",
+              "required": true,
+              "title": "etiqueta ARIA",
+              "default": "Volver a la ubicación anterior",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "_showTooltip": {
+              "type": "boolean",
+              "required": true,
+              "title": "Mostrar información sobre herramientas",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "tooltip": {
+              "type": "string",
+              "required": false,
+              "title": "Consejo sobre herramientas",
+              "default": "{{displayTitle}}",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            }
+          }
+        },
+        "_previous": {
+          "type": "object",
+          "required": true,
+          "legend": "Botón anterior",
+          "properties": {
+            "_isEnabled": {
+              "type": "boolean",
+              "required": true,
+              "title": "Monitora",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "_lockUntilPageComplete": {
+              "type": "boolean",
+              "required": true,
+              "title": "Bloquear hasta completar la página",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": [],
+              "help": "Para usar cuando el sistema de bloqueo Adapt estándar no se aplica, como en una página de inicio antes del menú principal"
+            },
+            "_order": {
+              "type": "number",
+              "required": true,
+              "default": 0,
+              "title": "Ordenar",
+              "inputType": "Number",
+              "validators": ["required", "number"],
+              "help": "Orden de visualización de los botones"
+            },
+            "_classes": {
+              "type": "string",
+              "required": false,
+              "title": "Clases",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_iconClass": {
+              "type": "string",
+              "required": false,
+              "title": "Clase de icono",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_alignIconRight": {
+              "type": "boolean",
+              "required": true,
+              "title": "Alinear icono a la derecha",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "text": {
+              "type": "string",
+              "required": true,
+              "default": "Previo",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "ariaLabel": {
+              "type": "string",
+              "required": true,
+              "title": "Etiqueta ARIA",
+              "default": "Pagina anterior",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "_showTooltip": {
+              "type": "boolean",
+              "required": true,
+              "title": "Mostrar información sobre herramientas",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "tooltip": {
+              "type": "string",
+              "required": false,
+              "title": "Información sobre herramientas",
+              "default": "{{displayTitle}}",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "_customRouteId": {
+              "type": "string",
+              "required": true,
+              "title": "Anular la identificación de la ruta",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            }
+          }
+        },
+        "_root": {
+          "type": "object",
+          "required": true,
+          "legend": "Botón raíz",
+          "properties": {
+            "_isEnabled": {
+              "type": "boolean",
+              "required": true,
+              "title": "Monitora",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "_lockUntilPageComplete": {
+              "type": "boolean",
+              "required": true,
+              "title": "Bloquear hasta completar la página",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": [],
+              "help": "Para usar cuando el sistema de bloqueo Adapt estándar no se aplica, como en una página de inicio antes del menú principal"
+            },
+            "_order": {
+              "type": "number",
+              "required": true,
+              "default": 0,
+              "title": "Ordenar",
+              "inputType": "Number",
+              "validators": ["required", "number"],
+              "help": "Orden de visualización de los botones"
+            },
+            "_classes": {
+              "type": "string",
+              "required": false,
+              "title": "Clases",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_iconClass": {
+              "type": "string",
+              "required": false,
+              "title": "Clase de icono",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_alignIconRight": {
+              "type": "boolean",
+              "required": true,
+              "title": "Alinear icono a la derecha",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "text": {
+              "type": "string",
+              "required": true,
+              "default": "Menú",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "ariaLabel": {
+              "type": "string",
+              "required": true,
+              "title": "Etiqueta ARIA",
+              "default": "Ir al menú principal",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "_showTooltip": {
+              "type": "boolean",
+              "required": true,
+              "title": "Mostrar información sobre herramientas",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "tooltip": {
+              "type": "string",
+              "required": false,
+              "title": "Información sobre herramientas",
+              "default": "{{displayTitle}}",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "_customRouteId": {
+              "type": "string",
+              "required": true,
+              "title": "Anular la identificación de la ruta",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            }
+          }
+        },
+        "_up": {
+          "type": "object",
+          "required": true,
+          "legend": "Botón de arriba",
+          "properties": {
+            "_isEnabled": {
+              "type": "boolean",
+              "required": true,
+              "title": "Monitora",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "_lockUntilPageComplete": {
+              "type": "boolean",
+              "required": true,
+              "title": "Bloquear hasta completar la página",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": [],
+              "help": "Para usar cuando el sistema de bloqueo Adapt estándar no se aplica, como en una página de inicio antes del menú principal"
+            },
+            "_order": {
+              "type": "number",
+              "required": true,
+              "default": 0,
+              "title": "Ordenar",
+              "inputType": "Number",
+              "validators": ["required", "number"],
+              "help": "Orden de visualización de los botones"
+            },
+            "_classes": {
+              "type": "string",
+              "required": false,
+              "title": "Clases",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_iconClass": {
+              "type": "string",
+              "required": false,
+              "title": "clase de icono",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_alignIconRight": {
+              "type": "boolean",
+              "required": true,
+              "title": "Alinear icono a la derecha",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "text": {
+              "type": "string",
+              "required": true,
+              "default": "Volver al menú",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "ariaLabel": {
+              "type": "string",
+              "required": true,
+              "title": "Etiqueta ARIA",
+              "default": "Volver al menú",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "_showTooltip": {
+              "type": "boolean",
+              "required": true,
+              "title": "Mostrar información sobre herramientas",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "tooltip": {
+              "type": "string",
+              "required": false,
+              "title": "Información sobre herramientas",
+              "default": "{{displayTitle}}",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "_customRouteId": {
+              "type": "string",
+              "required": true,
+              "title": "Anular la identificación de la ruta",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            }
+          }
+        },
+        "_next": {
+          "type": "object",
+          "required": true,
+          "legend": "Siguiente botón",
+          "properties": {
+            "_isEnabled": {
+              "type": "boolean",
+              "required": true,
+              "title": "Monitora",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "_lockUntilPageComplete": {
+              "type": "boolean",
+              "required": true,
+              "title": "Bloquear hasta completar la página",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": [],
+              "help": "Para usar cuando el sistema de bloqueo Adapt estándar no se aplica, como en una página de inicio antes del menú principal"
+            },
+            "_order": {
+              "type": "number",
+              "required": true,
+              "default": 0,
+              "title": "Ordenar",
+              "inputType": "Number",
+              "validators": ["required", "number"],
+              "help": "Orden de visualización de los botones"
+            },
+            "_classes": {
+              "type": "string",
+              "required": false,
+              "title": "Clases",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_iconClass": {
+              "type": "string",
+              "required": false,
+              "title": "clase de icono",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_alignIconRight": {
+              "type": "boolean",
+              "required": true,
+              "title": "Alinear icono a la derecha",
+              "default": true,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "text": {
+              "type": "string",
+              "required": true,
+              "default": "Próxima",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "ariaLabel": {
+              "type": "string",
+              "required": true,
+              "title": "Etiqueta ARIA",
+              "default": "Siguiente página",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "_showTooltip": {
+              "type": "boolean",
+              "required": true,
+              "title": "Mostrar información sobre herramientas",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "tooltip": {
+              "type": "string",
+              "required": false,
+              "title": "Información sobre herramientas",
+              "default": "{{displayTitle}}",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "_customRouteId": {
+              "type": "string",
+              "required": true,
+              "title": "Anular la identificación de la ruta",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            }
+          }
+        },
+        "_sibling": {
+          "type": "object",
+          "required": true,
+          "legend": "Botones de hermano",
+          "properties": {
+            "_isEnabled": {
+              "type": "boolean",
+              "required": true,
+              "title": "Monitora",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "_lockUntilPageComplete": {
+              "type": "boolean",
+              "required": true,
+              "title": "Bloquear hasta completar la página",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": [],
+              "help": "Para usar cuando el sistema de bloqueo Adapt estándar no se aplica, como en una página de inicio antes del menú principal"
+            },
+            "_order": {
+              "type": "number",
+              "required": true,
+              "default": 0,
+              "title": "Ordenar",
+              "inputType": "Number",
+              "validators": ["required", "number"],
+              "help": "Orden de visualización de los botones"
+            },
+            "_classes": {
+              "type": "string",
+              "required": false,
+              "title": "Clases",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_iconClass": {
+              "type": "string",
+              "required": false,
+              "title": "Clase de icono",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_alignIconRight": {
+              "type": "boolean",
+              "required": true,
+              "title": "Alinear icono a la derecha",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "text": {
+              "type": "string",
+              "required": true,
+              "default": "{{inc index}}",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "ariaLabel": {
+              "type": "string",
+              "required": true,
+              "title": "Etiqueta ARIA",
+              "default": "Page {{inc index}}",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "_showTooltip": {
+              "type": "boolean",
+              "required": true,
+              "title": "Mostrar información sobre herramientas",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "tooltip": {
+              "type": "string",
+              "required": false,
+              "title": "Información sobre herramientas",
+              "default": "{{displayTitle}}",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "_customRouteId": {
+              "type": "string",
+              "required": true,
+              "title": "Anular la identificación de la ruta",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            }
+          }
+        },
+        "_close": {
+          "type": "object",
+          "required": true,
+          "legend": "botón cerrar",
+          "properties": {
+            "_isEnabled": {
+              "type": "boolean",
+              "required": true,
+              "title": "Monitora",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "_lockUntilPageComplete": {
+              "type": "boolean",
+              "required": true,
+              "title": "Bloquear hasta completar la página",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": [],
+              "help": "Para usar cuando el sistema de bloqueo Adapt estándar no se aplica, como en una página de inicio antes del menú principal"
+            },
+            "_order": {
+              "type": "number",
+              "required": true,
+              "default": 0,
+              "title": "Ordenar",
+              "inputType": "Number",
+              "validators": ["required", "number"],
+              "help": "Orden de visualización de los botones"
+            },
+            "_classes": {
+              "type": "string",
+              "required": false,
+              "title": "Clases",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_iconClass": {
+              "type": "string",
+              "required": false,
+              "title": "clase de icono",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_alignIconRight": {
+              "type": "boolean",
+              "required": true,
+              "title": "Alinear icono a la derecha",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "text": {
+              "type": "string",
+              "required": true,
+              "default": "Cerca",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "ariaLabel": {
+              "type": "string",
+              "required": true,
+              "title": "Etiqueta ARIA",
+              "default": "Cerrar ventana",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "_showTooltip": {
+              "type": "boolean",
+              "required": true,
+              "title": "Mostrar información sobre herramientas",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "tooltip": {
+              "type": "string",
+              "required": false,
+              "title": "Tool tip",
+              "default": "Cerrar ventana",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            }
+          }
+        }
+      }
+    }
+  }
+}
